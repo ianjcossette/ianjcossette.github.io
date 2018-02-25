@@ -2,220 +2,67 @@
 
 <html>
 <body>
-<h1>Test Page</h1>
-  <html>
-	<head>
-		<meta charset=utf-8>
-		<title>My first three.js app</title>
-		<style>
-			body { margin: 0; }
-			canvas { width: 100%; height: 100% }
-		</style>
-	</head>
-	<body>
-		<script src="https://threejs.org/build/three.js"></script>
-		<head>
-		<title color:red;>three.js canvas - particles - waves</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
-			body {
-				background-color: #000000;
-				margin: 0px;
-				overflow: scroll;
-			}
 
-			a {
-				color:#0078ff;
-			}
-		</style>
-	</head>
-	<body>
-		<script src="https://threejs.org/build/three.js"></script>
+<div class="title">
+	<h1></br></b><b>OnSite</b><br/></h1>
+<h2> Boston Pro Websites 
+	<br>
+	Hingham, Mass.<br>
+	<a href="tel:+16176538504">(617) 653-8504</a>
+
+<style>
+	@import url('https://fonts.googleapis.com/css?family=Montserrat');
+body {
+	background-color: #111;
+}
+
+.title {
+	font-family: "Montserrat";
+	text-align: center;
+	color: #FFF;
+	display: flex;
+	flex-direction: column;
+	align-items: top;
+	justify-content: centr;
+	height: 100vh;
+	letter-spacing: 1px;
+	vertical-align : bottom;
+	
+			;
+}
+
+h1 {
+	background-image: url(https://78.media.tumblr.com/72b27538006cd1207ea2592106ee9ee3/tumblr_nztkr7lPUz1v2z4l8o1_500.gif);
+	background-height:50vh;
+	color: transparent;
+	-moz-background-clip: text;
+	-webkit-background-clip: text;
+	text-transform: 0;
+	font-size: 222px;
+	line-height: .75;
+	margin: 10px 0;
+}
+/* styling my button */
+
+.white-mode {
+	text-decoration: none;
+	padding: 7px 10px;
+	background-color: #122;
+	border-radius: 3px;
+	color: #FFF;
+	transition: .35s ease-in-out;
+	position: absolute;
+	left: 15px;
+	bottom: 15px;
+	font-family: "Montserrat";
+}
+
+.white-mode:hover {
+	background-color: #FFF;
+	color: #122;
+}
+</style>
 
-		<script src="https://threejs.org/examples/js/renderers/Projector.js"></script>
-		<script src="https://threejs.org/examples/js/renderers/CanvasRenderer.js"></script>
-
-		<script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
-
-		<div>
-		<script>
-<meta http-equiv="refresh" content="0; url=http://ijc.us.to/" /><p><a href="http://ijc.us.to/">Redirect</a></p>
-
-</script>
-		</div>
-		<div>
-
-		<script>
-
-			var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
-
-			var container, stats;
-			var camera, scene, renderer;
-
-			var particles, particle, count = 0;
-
-			var mouseX = 0, mouseY = 0;
-
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
-
-			init();
-			animate();
-
-			function init() {
-
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
-
-				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-				camera.position.z = 1000;
-
-				scene = new THREE.Scene();
-
-				particles = new Array();
-
-				var PI2 = Math.PI * 2;
-				var material = new THREE.SpriteCanvasMaterial( {
-
-					color: 0xffffff,
-					program: function ( context ) {
-
-						context.beginPath();
-						context.arc( 0, 0, 0.5, 0, PI2, true );
-						context.fill();
-
-					}
-
-				} );
-
-				var i = 0;
-
-				for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
-
-					for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
-
-						particle = particles[ i ++ ] = new THREE.Sprite( material );
-						particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
-						particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
-						scene.add( particle );
-
-					}
-
-				}
-
-				renderer = new THREE.CanvasRenderer();
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				container.appendChild( renderer.domElement );
-
-				stats = new Stats();
-				container.appendChild( stats.dom );
-
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-
-				//
-
-				window.addEventListener( 'resize', onWindowResize, false );
-
-			}
-
-			function onWindowResize() {
-
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-			}
-
-			//
-
-			function onDocumentMouseMove( event ) {
-
-				mouseX = event.clientX - windowHalfX;
-				mouseY = event.clientY - windowHalfY;
-
-			}
-
-			function onDocumentTouchStart( event ) {
-
-				if ( event.touches.length === 1 ) {
-
-					event.preventDefault();
-
-					mouseX = event.touches[ 0 ].pageX - windowHalfX;
-					mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
-				}
-
-			}
-
-			function onDocumentTouchMove( event ) {
-
-				if ( event.touches.length === 1 ) {
-
-					event.preventDefault();
-
-					mouseX = event.touches[ 0 ].pageX - windowHalfX;
-					mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
-				}
-
-			}
-
-			//
-
-			function animate() {
-
-				requestAnimationFrame( animate );
-
-				render();
-				stats.update();
-
-			}
-
-			function render() {
-
-				camera.position.x += ( mouseX - camera.position.x ) * .05;
-				camera.position.y += ( - mouseY - camera.position.y ) * .05;
-				camera.lookAt( scene.position );
-
-				var i = 0;
-
-				for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
-
-					for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
-
-						particle = particles[ i++ ];
-						particle.position.y = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) +
-							( Math.sin( ( iy + count ) * 0.5 ) * 50 );
-						particle.scale.x = particle.scale.y = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 4 +
-							( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 4;
-
-					}
-
-				}
-
-				renderer.render( scene, camera );
-
-				count += 0.1;
-
-			}
-
-		</script>
-				</div>
-
-	</body>
-		
-	</body>
-</html>
-<p>I'm hosted by GitHub.</p>
 </body>
 	<footer> <p>Site SETUP by Ian Cossette</p></footer>
 </html>
